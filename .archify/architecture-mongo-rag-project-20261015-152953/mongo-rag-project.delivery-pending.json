@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "command": "deliver",
+  "status": "pending",
+  "receiptId": "cd4eeca0-6f1b-4b77-9803-25acb447063c",
+  "input": "C:\\Users\\ADMIN\\Desktop\\test_bot\\mongo_rag_pro\\.archify\\architecture-mongo-rag-project-20261015-152953\\candidate.json",
+  "output": "C:\\Users\\ADMIN\\Desktop\\test_bot\\mongo_rag_pro\\.archify\\architecture-mongo-rag-project-20261015-152953\\mongo-rag-project.html"
+}

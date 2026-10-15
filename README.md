@@ -290,5 +290,6 @@ This is still bounded: for complete lists or exact counts over big data, a struc
 - Exact queries cover lists and counts over ONE collection with simple conditions. Sums, averages, grouping and multi-collection joins still go through similarity search.
 - PDFs and binary fields are ignored; only text stored in fields is indexed.
 - The chat page and `/api/ask/` have no login. Add authentication before exposing them. `/api/ingest/` already requires `INGEST_TOKEN` outside DEBUG.
-#   t e s t _ b o t  
+#   t e s t _ b o t 
+ 
  

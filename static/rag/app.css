@@ -312,6 +312,117 @@ button { font: inherit; color: inherit; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .frame, .card, .composer { background: rgba(255, 255, 255, .85); }
 }
+
+/* ---------- message edit (user bubbles) ---------- */
+.msg.user-wrap {
+  align-self: flex-end;
+  max-width: 82%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.msg.user-wrap .msg.user {
+  align-self: stretch;
+  max-width: 100%;
+}
+.msg-edit-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity .15s ease, transform .15s ease;
+  padding-right: 4px;
+}
+.msg.user-wrap:hover .msg-edit-actions,
+.msg.user-wrap:focus-within .msg-edit-actions { opacity: 1; transform: translateY(0); }
+.msg-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .65);
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.msg-edit-btn:hover { color: var(--violet); background: rgba(255, 255, 255, .95); border-color: rgba(154, 63, 216, .35); }
+.msg.user.editing { padding: 8px 10px 10px; }
+.msg.user.editing textarea {
+  width: 100%;
+  min-height: 48px;
+  max-height: 200px;
+  resize: none;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.msg.user.editing textarea::selection { background: rgba(255, 255, 255, .35); }
+.msg.user.editing .edit-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+}
+.msg.user.editing .edit-bar button {
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.msg.user.editing .edit-bar button:hover { background: rgba(255, 255, 255, .3); }
+.msg.user.editing .edit-bar .primary {
+  background: #fff;
+  color: var(--violet);
+  border-color: #fff;
+}
+.msg.user.editing .edit-bar .primary:hover { background: #f4eaff; }
+
+/* ---------- chat history edit (rename) ---------- */
+.chat-history-item .chat-history-edit {
+  background: none;
+  border: 0;
+  color: var(--faint);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity .15s;
+  flex: none;
+}
+.chat-history-item:hover .chat-history-edit { opacity: 1; }
+.chat-history-item .chat-history-edit:hover { color: var(--violet); background: rgba(154, 63, 216, .12); }
+.chat-history-title-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(154, 63, 216, .45);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .95);
+  padding: 3px 8px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  .msg.user-wrap { max-width: 92%; }
+  .msg-edit-actions { opacity: 1; } /* always visible on touch */
+}
+
 @media (prefers-reduced-motion: reduce) {
   .blob, .typing i { animation: none; }
   .send { transition: none; }

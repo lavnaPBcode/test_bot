@@ -163,3 +163,41 @@ def chat_delete(request, session_id):
         return JsonResponse({"success": True})
     except Exception as exc:
         return _error(exc)
+
+    
+
+# -------------------------------------------------------------------------------------------
+
+
+
+
+
+# rag/views.py
+import json
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
+
+from .models import ChatSession  # adjust to your actual model
+
+
+@require_POST
+@csrf_protect
+def rename_chat(request, session_id):
+    """Rename a chat session. Called from the sidebar's ✎ button."""
+    try:
+        body = json.loads(request.body or "{}")
+    except json.JSONDecodeError:
+        return JsonResponse({"ok": False, "error": "Invalid JSON"}, status=400)
+
+    title = (body.get("title") or "").strip()
+    if not title:
+        return JsonResponse({"ok": False, "error": "Title cannot be empty"}, status=400)
+
+    title = title[:120]  # hard cap, matches the model field
+
+    updated = ChatSession.objects.filter(session_id=session_id).update(title=title)
+    if not updated:
+        return JsonResponse({"ok": False, "error": "Chat not found"}, status=404)
+
+    return JsonResponse({"ok": True, "title": title})
